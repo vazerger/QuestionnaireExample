@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище dbAnketaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="QE_Questions">
+    <Key>
+      <PropertyRef Name="Q_ID" />
+    </Key>
+    <Property Name="Q_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Q_QUESTIONS" Type="nvarchar(max)" />
+    <Property Name="Q_MAXN" Type="int" />
+  </EntityType>
+  <EntityType Name="QE_QuestionsUserValue">
+    <Key>
+      <PropertyRef Name="QE_ID" />
+    </Key>
+    <Property Name="QE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QE_QUSERID" Type="int" />
+    <Property Name="QE_QID" Type="int" />
+    <Property Name="QE_VALUE" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QE_User">
+    <Key>
+      <PropertyRef Name="QUSER_ID" />
+    </Key>
+    <Property Name="QUSER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QUSER_NAME" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_QE_QuestionsUserValue_QE_Questions">
+    <End Role="QE_Questions" Type="Self.QE_Questions" Multiplicity="0..1" />
+    <End Role="QE_QuestionsUserValue" Type="Self.QE_QuestionsUserValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QE_Questions">
+        <PropertyRef Name="Q_ID" />
+      </Principal>
+      <Dependent Role="QE_QuestionsUserValue">
+        <PropertyRef Name="QE_QID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QE_QuestionsUserValue_QE_User">
+    <End Role="QE_User" Type="Self.QE_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QE_QuestionsUserValue" Type="Self.QE_QuestionsUserValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QE_User">
+        <PropertyRef Name="QUSER_ID" />
+      </Principal>
+      <Dependent Role="QE_QuestionsUserValue">
+        <PropertyRef Name="QE_QUSERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище dbAnketaModelContainer">
+    <EntitySet Name="QE_Questions" EntityType="Self.QE_Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QE_QuestionsUserValue" EntityType="Self.QE_QuestionsUserValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QE_User" EntityType="Self.QE_User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_QE_QuestionsUserValue_QE_Questions" Association="Self.FK_QE_QuestionsUserValue_QE_Questions">
+      <End Role="QE_Questions" EntitySet="QE_Questions" />
+      <End Role="QE_QuestionsUserValue" EntitySet="QE_QuestionsUserValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QE_QuestionsUserValue_QE_User" Association="Self.FK_QE_QuestionsUserValue_QE_User">
+      <End Role="QE_User" EntitySet="QE_User" />
+      <End Role="QE_QuestionsUserValue" EntitySet="QE_QuestionsUserValue" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

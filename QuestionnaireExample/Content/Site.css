@@ -1,0 +1,104 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Анкета */
+
+name {
+    color: #66ff00;
+}
+
+.anketa {
+   margin-top: 10px;
+   padding: 0px 10px 30px 30px;
+   background-color: #000000;   
+   color: #fff;
+}
+
+.anketa h1, .anketa h2, .questions {
+    color: #ff5a00;
+}
+
+.anketa input, .anketa button {
+    display: inline;
+}
+
+.anketa h3, .counters {
+    color: #00d8ff;
+}
+
+.anketa input[type='text'] {
+    background-color: #fff;
+    border: 0px;
+    padding: 5px 5px 5px 15px;
+    font-size: 28px;
+    color: #000;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    vertical-align: top;
+}
+
+.anketa button {
+    padding: 5px 5px 5px 15px;
+    background-color: #ffb400;
+    color: #000;
+    border: 0px;
+    font-size: 24px;
+    padding: 8px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    vertical-align: top;
+}
+
+.questions {
+    font-size: 18px;
+}
+
+.counters {
+    margin-top: 10px;
+}
+
+.counters strong {
+    color: #fff;
+}
+
+.error-yellow { 
+    color: #ffd800;
+}
+
+.trHeadReport {
+    background-color: #F5F5F5; 
+    font-size: 18px;
+}

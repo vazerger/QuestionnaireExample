@@ -1,0 +1,25 @@
+﻿<div class="row">
+    <div class="col-md-7 anketa">
+        <h1>Ваше имя: <name>{{name}}</name></h1>
+        <div ng-show="!uName">
+            <div ng-model="error" class="error-yellow">{{error}}</div>
+            <input type="text" ng-model="name" placeholder="Введите свое имя" class="input-large"> 
+            <button ng-click="addName()">Перейти к анкете</button>
+        </div>
+
+        <div ng-show="uName">
+            <h3>Анкета</h3>
+            <div class="counters"><strong>Вопрос номер:</strong> {{qcount}}</div>
+            <label class="questions">{{Question.data.name}} (1 - {{Question.data.n}}):</label>
+            <div ng-model="error" class="error-yellow">{{error}}</div>
+            <div>
+                <input type="text" ng-model="count" placeholder="Введите число" pattern="\d*"> 
+                <button ng-click="qNext()">Следующий вопрос</button>
+            </div>
+            <div class="counters">
+                <div><strong>Всего вопросов:</strong> {{Questions.length}}</div>
+            </div>
+        </div>
+
+    </div>
+</div>

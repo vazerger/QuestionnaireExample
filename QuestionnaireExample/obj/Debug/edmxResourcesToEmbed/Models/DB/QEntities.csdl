@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuestionnaireExampleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QuestionnaireExampleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="QE_User" EntityType="QuestionnaireExampleModel.QE_User" />
+    <EntitySet Name="QE_Questions" EntityType="QuestionnaireExampleModel.QE_Questions" />
+    <EntitySet Name="QE_QuestionsUserValue" EntityType="QuestionnaireExampleModel.QE_QuestionsUserValue" />
+    <AssociationSet Name="FK_QE_QuestionsUserValue_QE_Questions" Association="QuestionnaireExampleModel.FK_QE_QuestionsUserValue_QE_Questions">
+      <End Role="QE_Questions" EntitySet="QE_Questions" />
+      <End Role="QE_QuestionsUserValue" EntitySet="QE_QuestionsUserValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QE_QuestionsUserValue_QE_User" Association="QuestionnaireExampleModel.FK_QE_QuestionsUserValue_QE_User">
+      <End Role="QE_User" EntitySet="QE_User" />
+      <End Role="QE_QuestionsUserValue" EntitySet="QE_QuestionsUserValue" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="QE_User">
+    <Key>
+      <PropertyRef Name="QUSER_ID" />
+    </Key>
+    <Property Name="QUSER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QUSER_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="QE_QuestionsUserValue" Relationship="QuestionnaireExampleModel.FK_QE_QuestionsUserValue_QE_User" FromRole="QE_User" ToRole="QE_QuestionsUserValue" />
+  </EntityType>
+  <EntityType Name="QE_Questions">
+    <Key>
+      <PropertyRef Name="Q_ID" />
+    </Key>
+    <Property Name="Q_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Q_QUESTIONS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q_MAXN" Type="Int32" />
+    <NavigationProperty Name="QE_QuestionsUserValue" Relationship="QuestionnaireExampleModel.FK_QE_QuestionsUserValue_QE_Questions" FromRole="QE_Questions" ToRole="QE_QuestionsUserValue" />
+  </EntityType>
+  <EntityType Name="QE_QuestionsUserValue">
+    <Key>
+      <PropertyRef Name="QE_ID" />
+    </Key>
+    <Property Name="QE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QE_QUSERID" Type="Int32" />
+    <Property Name="QE_QID" Type="Int32" />
+    <Property Name="QE_VALUE" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="QE_Questions" Relationship="QuestionnaireExampleModel.FK_QE_QuestionsUserValue_QE_Questions" FromRole="QE_QuestionsUserValue" ToRole="QE_Questions" />
+    <NavigationProperty Name="QE_User" Relationship="QuestionnaireExampleModel.FK_QE_QuestionsUserValue_QE_User" FromRole="QE_QuestionsUserValue" ToRole="QE_User" />
+  </EntityType>
+  <Association Name="FK_QE_QuestionsUserValue_QE_Questions">
+    <End Type="QuestionnaireExampleModel.QE_Questions" Role="QE_Questions" Multiplicity="0..1" />
+    <End Type="QuestionnaireExampleModel.QE_QuestionsUserValue" Role="QE_QuestionsUserValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QE_Questions">
+        <PropertyRef Name="Q_ID" />
+      </Principal>
+      <Dependent Role="QE_QuestionsUserValue">
+        <PropertyRef Name="QE_QID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QE_QuestionsUserValue_QE_User">
+    <End Type="QuestionnaireExampleModel.QE_User" Role="QE_User" Multiplicity="0..1" />
+    <End Type="QuestionnaireExampleModel.QE_QuestionsUserValue" Role="QE_QuestionsUserValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QE_User">
+        <PropertyRef Name="QUSER_ID" />
+      </Principal>
+      <Dependent Role="QE_QuestionsUserValue">
+        <PropertyRef Name="QE_QUSERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище QuestionnaireExampleModelContainer" CdmEntityContainer="QuestionnaireExampleEntities">
+    <EntitySetMapping Name="QE_User">
+      <EntityTypeMapping TypeName="QuestionnaireExampleModel.QE_User">
+        <MappingFragment StoreEntitySet="QE_User">
+          <ScalarProperty Name="QUSER_NAME" ColumnName="QUSER_NAME" />
+          <ScalarProperty Name="QUSER_ID" ColumnName="QUSER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QE_Questions">
+      <EntityTypeMapping TypeName="QuestionnaireExampleModel.QE_Questions">
+        <MappingFragment StoreEntitySet="QE_Questions">
+          <ScalarProperty Name="Q_MAXN" ColumnName="Q_MAXN" />
+          <ScalarProperty Name="Q_QUESTIONS" ColumnName="Q_QUESTIONS" />
+          <ScalarProperty Name="Q_ID" ColumnName="Q_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QE_QuestionsUserValue">
+      <EntityTypeMapping TypeName="QuestionnaireExampleModel.QE_QuestionsUserValue">
+        <MappingFragment StoreEntitySet="QE_QuestionsUserValue">
+          <ScalarProperty Name="QE_VALUE" ColumnName="QE_VALUE" />
+          <ScalarProperty Name="QE_QID" ColumnName="QE_QID" />
+          <ScalarProperty Name="QE_QUSERID" ColumnName="QE_QUSERID" />
+          <ScalarProperty Name="QE_ID" ColumnName="QE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

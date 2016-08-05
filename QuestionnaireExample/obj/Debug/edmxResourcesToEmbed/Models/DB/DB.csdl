@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbAnketaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="QE_Questions">
+    <Key>
+      <PropertyRef Name="Q_ID" />
+    </Key>
+    <Property Name="Q_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Q_QUESTIONS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q_MAXN" Type="Int32" />
+    <NavigationProperty Name="QE_QuestionsUserValue" Relationship="Self.FK_QE_QuestionsUserValue_QE_Questions" FromRole="QE_Questions" ToRole="QE_QuestionsUserValue" />
+  </EntityType>
+  <EntityType Name="QE_QuestionsUserValue">
+    <Key>
+      <PropertyRef Name="QE_ID" />
+    </Key>
+    <Property Name="QE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QE_QUSERID" Type="Int32" />
+    <Property Name="QE_QID" Type="Int32" />
+    <Property Name="QE_VALUE" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="QE_Questions" Relationship="Self.FK_QE_QuestionsUserValue_QE_Questions" FromRole="QE_QuestionsUserValue" ToRole="QE_Questions" />
+    <NavigationProperty Name="QE_User" Relationship="Self.FK_QE_QuestionsUserValue_QE_User" FromRole="QE_QuestionsUserValue" ToRole="QE_User" />
+  </EntityType>
+  <EntityType Name="QE_User">
+    <Key>
+      <PropertyRef Name="QUSER_ID" />
+    </Key>
+    <Property Name="QUSER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QUSER_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="QE_QuestionsUserValue" Relationship="Self.FK_QE_QuestionsUserValue_QE_User" FromRole="QE_User" ToRole="QE_QuestionsUserValue" />
+  </EntityType>
+  <Association Name="FK_QE_QuestionsUserValue_QE_Questions">
+    <End Role="QE_Questions" Type="Self.QE_Questions" Multiplicity="0..1" />
+    <End Role="QE_QuestionsUserValue" Type="Self.QE_QuestionsUserValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QE_Questions">
+        <PropertyRef Name="Q_ID" />
+      </Principal>
+      <Dependent Role="QE_QuestionsUserValue">
+        <PropertyRef Name="QE_QID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QE_QuestionsUserValue_QE_User">
+    <End Role="QE_User" Type="Self.QE_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QE_QuestionsUserValue" Type="Self.QE_QuestionsUserValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QE_User">
+        <PropertyRef Name="QUSER_ID" />
+      </Principal>
+      <Dependent Role="QE_QuestionsUserValue">
+        <PropertyRef Name="QE_QUSERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AnketaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="QE_Questions" EntityType="Self.QE_Questions" />
+    <EntitySet Name="QE_QuestionsUserValue" EntityType="Self.QE_QuestionsUserValue" />
+    <EntitySet Name="QE_User" EntityType="Self.QE_User" />
+    <AssociationSet Name="FK_QE_QuestionsUserValue_QE_Questions" Association="Self.FK_QE_QuestionsUserValue_QE_Questions">
+      <End Role="QE_Questions" EntitySet="QE_Questions" />
+      <End Role="QE_QuestionsUserValue" EntitySet="QE_QuestionsUserValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QE_QuestionsUserValue_QE_User" Association="Self.FK_QE_QuestionsUserValue_QE_User">
+      <End Role="QE_User" EntitySet="QE_User" />
+      <End Role="QE_QuestionsUserValue" EntitySet="QE_QuestionsUserValue" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

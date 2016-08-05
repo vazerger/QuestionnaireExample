@@ -1,0 +1,18 @@
+﻿<h2>Мой отчет</h2>
+<label>Максимальный балл для каждого респондента</label>
+<table class="table">
+    <thead>
+        <tr style="background-color:#F5F5F5;">
+            <th>Id</th>
+            <th>Пользователь</th>
+            <th>Балл</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="Value in Values">
+            <td>{{Value.id}}</td>
+            <td>{{Value.username}}</td>
+            <td>{{Value.value}}</td>
+        </tr>
+    </tbody>
+</table>
